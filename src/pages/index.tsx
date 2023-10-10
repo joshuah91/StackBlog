@@ -538,11 +538,25 @@ export default function Home() {
                     "app-id": process.env.NEXT_PUBLIC_APP_ID,
                   },
                   data: formDetails,
-                }).then((res) => {
-                  console.log(res);
-                  setSubmitting(false);
-                  handleClose();
-                });
+                })
+                  .then((res) => {
+                    console.log(res);
+                    setSubmitting(false);
+                    swal({
+                      icon: "success",
+                      title: "Success!",
+                      text: "Created Successfully!",
+                    });
+                    handleClose();
+                  })
+                  .catch((err) => {
+                    console.log(err);
+                    swal({
+                      icon: "error",
+                      title: "Error!",
+                      text: "Something went wrong. Please try again later!",
+                    });
+                  });
               }}
             >
               {({ values, errors, isSubmitting }) => (
